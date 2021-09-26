@@ -2,11 +2,13 @@
 
 namespace backend\controllers;
 
+use Yii;
 use common\models\base\Authors;
 use common\models\search\AuthorsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * AuthorsController implements the CRUD actions for Authors model.
@@ -21,6 +23,20 @@ class AuthorsController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'actions' => ['login', 'error'],
+                            'allow' => true,
+                        ],
+                        [
+                            'actions' => ['logout', 'index', 'create', 'update', 'delete', 'view'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

@@ -2,11 +2,13 @@
 
 namespace backend\controllers;
 
+use Yii;
 use common\models\base\Categories;
 use common\models\search\CategoriesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * CategoriesController implements the CRUD actions for Categories model.
@@ -21,6 +23,20 @@ class CategoriesController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'actions' => ['login', 'error'],
+                            'allow' => true,
+                        ],
+                        [
+                            'actions' => ['logout', 'index', 'create', 'update', 'delete', 'view'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

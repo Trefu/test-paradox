@@ -18,7 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Create Books'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -31,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'epilogue',
             'editorial_id',
             'author_id',
-            //'category_id',
+            'category_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
