@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use Yii;
 use common\models\base\Books;
 use common\models\search\BooksSearch;
 use yii\web\Controller;
