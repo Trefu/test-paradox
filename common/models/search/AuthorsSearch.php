@@ -18,7 +18,7 @@ class AuthorsSearch extends Authors
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['author_name'], 'safe'],
         ];
     }
 
@@ -61,7 +61,7 @@ class AuthorsSearch extends Authors
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'author_name', $this->author_name]);
 
         return $dataProvider;
     }

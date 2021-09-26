@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "authors".
  *
  * @property int $id
- * @property string $name
+ * @property string $author_name
  *
  * @property Books[] $books
  */
@@ -28,9 +28,9 @@ class Authors extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 255],
-            [['name'], 'unique'],
+            [['author_name'], 'required'],
+            [['author_name'], 'string', 'max' => 255],
+            [['author_name'], 'unique'],
         ];
     }
 
@@ -41,7 +41,7 @@ class Authors extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
+            'author_name' => Yii::t('app', 'Author Name'),
         ];
     }
 
