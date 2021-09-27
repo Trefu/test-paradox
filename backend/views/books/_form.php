@@ -6,7 +6,6 @@ use common\models\base\Editorials;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
 /* @var $this yii\web\View */
 /* @var $model common\models\base\Books */
 /* @var $form yii\widgets\ActiveForm */
@@ -14,6 +13,8 @@ use yii\widgets\ActiveForm;
 
 <div class="books-form">
 
+    <?php
+    ?>
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
