@@ -1,7 +1,11 @@
 <?php
 
+use common\models\base\Authors;
+use common\models\base\Categories;
+use common\models\base\Editorials;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\BooksSearch */
@@ -30,9 +34,24 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'epilogue',
-            'editorial_id',
-            'author_id',
-            'category_id',
+
+            [
+                'value' => 'author.author_name',
+                'attribute' => 'author_id',
+                'filter' => ArrayHelper::map(Authors::find()->all(), 'id', 'author_name')
+            ],
+            [
+                'value' => 'category.category_name',
+                'attribute' => 'category_id',
+                'filter' => ArrayHelper::map(Categories::find()->all(), 'id', 'category_name')
+            ],
+            [
+
+                'attribute' => 'editorial_id',
+                'value' => 'editorial.editorial_name',
+                'filter' => ArrayHelper::map(Editorials::find()->all(), 'id', 'editorial_name')
+            ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

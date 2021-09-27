@@ -1,5 +1,9 @@
 <?php
 
+use common\models\base\Authors;
+use common\models\base\Categories;
+use common\models\base\Editorials;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -16,11 +20,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'epilogue')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'editorial_id')->textInput() ?>
+    <?= $form->field($model, 'editorial_id')->dropDownList(ArrayHelper::map(Editorials::find()->all(), 'id', 'editorial_name'))
+    ?>
 
-    <?= $form->field($model, 'author_id')->textInput() ?>
+    <?= $form->field($model, 'author_id')->dropDownList(ArrayHelper::map(Authors::find()->all(), 'id', 'author_name')) ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Categories::find()->all(), 'id', 'category_name')) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

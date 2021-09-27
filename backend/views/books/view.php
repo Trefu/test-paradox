@@ -28,13 +28,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DetailView::widget([
         'model' => $model,
+
         'attributes' => [
+
             'id',
             'title',
             'epilogue',
-            'editorial_id',
-            'author_id',
-            'category_id',
+            [
+                'format' => 'raw',
+                'label' => 'Editorial',
+                'value' => Html::a($model->editorial->editorial_name, ['editorials/view', 'id' => $model->editorial_id])
+            ],
+            [
+                'format' => 'raw',
+                'label' => 'Author',
+                'value' => Html::a($model->author->author_name, ['authors/view', 'id' => $model->editorial_id])
+            ],
+            [
+                'format' => 'raw',
+                'label' => 'Category',
+                'value' => Html::a($model->category->category_name, ['categories/view', 'id' => $model->editorial_id])
+            ],
         ],
     ]) ?>
 

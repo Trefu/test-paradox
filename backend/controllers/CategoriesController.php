@@ -27,13 +27,8 @@ class CategoriesController extends Controller
                     'class' => AccessControl::className(),
                     'rules' => [
                         [
-                            'actions' => ['login', 'error'],
                             'allow' => true,
-                        ],
-                        [
-                            'actions' => ['logout', 'index', 'create', 'update', 'delete', 'view'],
-                            'allow' => true,
-                            'roles' => ['@'],
+                            'roles' => ['@']
                         ],
                     ],
                 ],

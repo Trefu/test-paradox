@@ -15,6 +15,10 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\BooksFrontModel;
+use common\models\base\Books;
+
+
 
 /**
  * Site controller
@@ -75,7 +79,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $books = Books::find()->all();
+
+        return $this->render('index', ['books' => $books]);
     }
 
     /**

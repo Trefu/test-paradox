@@ -1,7 +1,9 @@
 <?php
 
+use common\models\base\Editorials;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\EditorialsSearch */
@@ -18,7 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Create Editorials'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -27,8 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'editorial_name',
-
+            [
+                'value' => 'editorial_name',
+                'attribute' => 'editorial_name',
+                'filter' => ArrayHelper::map(Editorials::find()->all(), 'id', 'editorial_name'),
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

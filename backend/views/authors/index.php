@@ -1,7 +1,9 @@
 <?php
 
+use common\models\base\Authors;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\AuthorsSearch */
@@ -18,7 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Create Authors'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -27,9 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'author_name',
 
+            [
+                'value' => 'author_name',
+                'attribute' => 'author_name',
+                'filter' => ArrayHelper::map(Authors::find()->all(), 'id', 'author_name'),
+            ],
             ['class' => 'yii\grid\ActionColumn'],
+
         ],
     ]); ?>
 

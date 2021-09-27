@@ -1,7 +1,9 @@
 <?php
 
+use common\models\base\Categories;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\CategoriesSearch */
@@ -18,7 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Create Categories'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -27,7 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'category_name',
+            [
+                'value' => 'category_name',
+                'attribute' => 'category_name',
+                'filter' => ArrayHelper::map(Categories::find()->all(), 'id', 'category_name'),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

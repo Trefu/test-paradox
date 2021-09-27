@@ -38,9 +38,9 @@ class Books extends \yii\db\ActiveRecord
             [['editorial_id', 'author_id', 'category_id'], 'integer'],
             [['title', 'epilogue'], 'string', 'max' => 255],
             [['title'], 'unique'],
-            [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => Authors::className(), 'targetAttribute' => ['author_id' => 'id']],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
-            [['editorial_id'], 'exist', 'skipOnError' => true, 'targetClass' => Editorials::className(), 'targetAttribute' => ['editorial_id' => 'id']],
+            [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => Authors::class, 'targetAttribute' => ['author_id' => 'id']],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::class, 'targetAttribute' => ['category_id' => 'id']],
+            [['editorial_id'], 'exist', 'skipOnError' => true, 'targetClass' => Editorials::class, 'targetAttribute' => ['editorial_id' => 'id']],
         ];
     }
 
@@ -66,7 +66,7 @@ class Books extends \yii\db\ActiveRecord
      */
     public function getAuthor()
     {
-        return $this->hasOne(Authors::className(), ['id' => 'author_id']);
+        return $this->hasOne(Authors::class, ['id' => 'author_id']);
     }
 
     /**
@@ -76,7 +76,7 @@ class Books extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Categories::className(), ['id' => 'category_id']);
+        return $this->hasOne(Categories::class, ['id' => 'category_id']);
     }
 
     /**
@@ -86,6 +86,6 @@ class Books extends \yii\db\ActiveRecord
      */
     public function getEditorial()
     {
-        return $this->hasOne(Editorials::className(), ['id' => 'editorial_id']);
+        return $this->hasOne(Editorials::class, ['id' => 'editorial_id']);
     }
 }
